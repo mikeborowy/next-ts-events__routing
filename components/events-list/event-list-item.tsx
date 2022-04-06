@@ -1,4 +1,5 @@
 import type { NextPage } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import AddressIcon from "../icons/address-icon";
 import { Button } from "../button";
@@ -29,7 +30,7 @@ export const EventListItem: NextPage<EventListItemProps> = (
 
   return (
     <li className={classes.item}>
-      <img src={`/${image}`} alt={title} />
+      <Image src={`/${image}`} alt={title} width={250} height={160} />
       <div className={classes.content}>
         <div className={classes.summary}>
           <h2>{title}</h2>

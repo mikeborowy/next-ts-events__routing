@@ -1,0 +1,1 @@
+export { fetchEventsAPI } from "./fetchEvents";

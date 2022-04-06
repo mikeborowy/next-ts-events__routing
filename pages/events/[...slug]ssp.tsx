@@ -1,10 +1,9 @@
-import type { NextPage } from "next";
+import type { GetServerSideProps, NextPage } from "next";
 import { useRouter } from "next/dist/client/router";
 import Head from "next/head";
-
-import { useEffect, useState } from "react";
-import useSWR from "swr";
-
+import { ParsedUrlQuery } from "querystring";
+import { fileURLToPath } from "url";
+import { fetchEventsAPI } from "../../api";
 import { Button } from "../../components/button";
 import { ErrorAlert } from "../../components/error-alert/error-alert";
 import { EventList } from "../../components/events-list";
@@ -12,47 +11,25 @@ import { ResultsTitle } from "../../components/results-title/results-title";
 import { isValidDate, getFilteredEvents } from "../../helpers";
 import { EventModel } from "../../models";
 
-/** Client Side Data Fetching */
+/** Server Side Props */
 
-const FilteredEventsPage: NextPage = () => {
-  const [allEvents, setAllEvents] = useState<EventModel[]>();
-  const router = useRouter();
-  const filterData = router.query.slug as string[];
+type FilteredEventsPageProps = {
+  events: EventModel[];
+  date: {
+    year: number;
+    month: number;
+  };
+  hasError: boolean;
+};
 
-  const { data, error } = useSWR(
-    "https://nextjs-course-12061-default-rtdb.firebaseio.com/events.json",
-    (url) => fetch(url).then((res) => res.json())
-  );
+const FilteredEventsPage: NextPage<FilteredEventsPageProps> = (props) => {
+  const {
+    events,
+    date: { year, month },
+    hasError,
+  } = props;
 
-  useEffect(() => {
-    if (data) {
-      const events: EventModel[] = [];
-
-      for (const key in data) {
-        if (Object.prototype.hasOwnProperty.call(data, key)) {
-          const element = data[key];
-
-          events.push({
-            id: key,
-            ...element,
-          });
-        }
-      }
-
-      setAllEvents(events);
-    }
-  }, [data]);
-
-  if (!allEvents) {
-    return <p className="center">Loading ...</p>;
-  }
-
-  const [filteredYear, filteredMonth] = filterData;
-
-  const year = +filteredYear;
-  const month = +filteredMonth;
-
-  if (isValidDate(year, month) || error) {
+  if (hasError) {
     return (
       <>
         <Head>
@@ -71,14 +48,6 @@ const FilteredEventsPage: NextPage = () => {
       </>
     );
   }
-
-  const events = getFilteredEvents(
-    {
-      year,
-      month,
-    },
-    allEvents
-  );
 
   if (!events || events.length === 0) {
     return (
@@ -115,6 +84,33 @@ const FilteredEventsPage: NextPage = () => {
       <EventList events={events} />
     </>
   );
+};
+
+export const getServerSideProps: GetServerSideProps<
+  FilteredEventsPageProps,
+  ParsedUrlQuery
+> = async (context) => {
+  const { params } = context;
+  const filterData = params?.slug;
+
+  const year = filterData?.[0];
+  const month = filterData?.[1];
+
+  const hasError = isValidDate(year, month);
+
+  const events = await fetchEventsAPI();
+  const filteredEvents = getFilteredEvents({ year, month }, events);
+
+  return {
+    props: {
+      events: filteredEvents,
+      date: {
+        year: Number(year),
+        month: Number(month),
+      },
+      hasError,
+    },
+  };
 };
 
 export default FilteredEventsPage;

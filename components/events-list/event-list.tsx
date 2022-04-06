@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import { EventModel } from "../../data/models";
+import { EventModel } from "../../models";
 import { EventListItem } from "./event-list-item";
 import classes from "./event-list.module.css";
 
