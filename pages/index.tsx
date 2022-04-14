@@ -1,11 +1,11 @@
-import Head from "next/head";
 import type { GetStaticProps, NextPage } from "next";
-import { EventList } from "../components/events-list";
-import { EventModel } from "../models";
-import { fetchEventsAPI } from "../api";
-import { getFeaturedEvents } from "../helpers";
+import Head from "next/head";
 import { ParsedUrlQuery } from "querystring";
-import React from "react";
+import { fetchEventsAPI } from "../api/firebase";
+import { EventList } from "../components/events-list";
+import { NewsletterRegistration } from "../components/newsletter-registration";
+import { getFeaturedEvents } from "../helpers";
+import { EventModel } from "../models";
 
 type HomePageProps = {
   events: EventModel[];
@@ -18,6 +18,7 @@ const HomePage: NextPage<HomePageProps> = ({ events }) => {
         <title>Next.js Event List</title>
         <meta name="description" content="Lorem ipsum dolorei" />
       </Head>
+      <NewsletterRegistration />
       <EventList events={events} />
     </div>
   );

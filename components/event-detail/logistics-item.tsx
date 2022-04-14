@@ -5,7 +5,7 @@ type LogisticsItemProps = {
   icon: ReactElement;
   children: ReactNode;
 };
-function LogisticsItem(props: LogisticsItemProps) {
+export function LogisticsItem(props: LogisticsItemProps) {
   const { icon } = props;
 
   const Icon = () => icon as ReactElement;
@@ -19,5 +19,3 @@ function LogisticsItem(props: LogisticsItemProps) {
     </li>
   );
 }
-
-export default LogisticsItem;

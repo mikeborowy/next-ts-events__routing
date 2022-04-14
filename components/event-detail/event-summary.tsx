@@ -2,7 +2,7 @@ import classes from "./event-summary.module.css";
 
 type EventSummaryProps = { title: string };
 
-function EventSummary(props: EventSummaryProps) {
+export function EventSummary(props: EventSummaryProps) {
   const { title } = props;
 
   return (
@@ -11,5 +11,3 @@ function EventSummary(props: EventSummaryProps) {
     </section>
   );
 }
-
-export default EventSummary;

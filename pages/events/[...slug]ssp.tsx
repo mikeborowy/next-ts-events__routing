@@ -1,14 +1,12 @@
 import type { GetServerSideProps, NextPage } from "next";
-import { useRouter } from "next/dist/client/router";
 import Head from "next/head";
 import { ParsedUrlQuery } from "querystring";
-import { fileURLToPath } from "url";
-import { fetchEventsAPI } from "../../api";
+import { fetchEventsAPI } from "../../api/firebase";
 import { Button } from "../../components/button";
 import { ErrorAlert } from "../../components/error-alert/error-alert";
 import { EventList } from "../../components/events-list";
 import { ResultsTitle } from "../../components/results-title/results-title";
-import { isValidDate, getFilteredEvents } from "../../helpers";
+import { getFilteredEvents, isValidDate } from "../../helpers";
 import { EventModel } from "../../models";
 
 /** Server Side Props */

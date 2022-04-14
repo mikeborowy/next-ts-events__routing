@@ -1,4 +1,3 @@
-import { ErrorAlert } from "../components/error-alert/error-alert";
 import { EventModel } from "../models";
 
 export const fetchEventsAPI = async (): Promise<EventModel[]> => {
@@ -7,13 +6,13 @@ export const fetchEventsAPI = async (): Promise<EventModel[]> => {
       "https://nextjs-course-12061-default-rtdb.firebaseio.com/events.json"
     );
 
-    const data = await response.json();
+    const jsonData = await response.json();
 
     const events: EventModel[] = [];
 
-    for (const key in data) {
-      if (Object.prototype.hasOwnProperty.call(data, key)) {
-        const element = data[key];
+    for (const key in jsonData) {
+      if (Object.prototype.hasOwnProperty.call(jsonData, key)) {
+        const element = jsonData[key];
 
         events.push({
           id: key,

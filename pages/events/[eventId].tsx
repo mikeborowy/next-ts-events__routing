@@ -1,12 +1,11 @@
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import Head from "next/head";
-
 import { ParsedUrlQuery } from "querystring";
-import { fetchEventsAPI } from "../../api";
-import { ErrorAlert } from "../../components/error-alert/error-alert";
-import EventContent from "../../components/event-detail/event-content";
-import EventLogistics from "../../components/event-detail/event-logistics";
-import EventSummary from "../../components/event-detail/event-summary";
+import { fetchEventsAPI } from "../../api/firebase";
+import { Comments } from "../../components/comments/comments";
+import { EventContent } from "../../components/event-detail/event-content";
+import { EventLogistics } from "../../components/event-detail/event-logistics";
+import { EventSummary } from "../../components/event-detail/event-summary";
 import { getEventById } from "../../helpers";
 import { EventModel } from "../../models";
 
@@ -41,6 +40,7 @@ const EventDetailsPage: NextPage<EventDetailsPageProps> = (props) => {
       <EventContent>
         <p>{event.description}</p>
       </EventContent>
+      <Comments eventId={event.id} />
     </>
   );
 };

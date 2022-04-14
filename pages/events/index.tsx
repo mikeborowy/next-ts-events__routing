@@ -2,8 +2,7 @@ import type { GetStaticProps, NextPage } from "next";
 import { useRouter } from "next/dist/client/router";
 import Head from "next/head";
 import { ParsedUrlQuery } from "querystring";
-import { fetchEventsAPI } from "../../api";
-
+import { fetchEventsAPI } from "../../api/firebase";
 import {
   EventsSearch,
   SearchEventType,

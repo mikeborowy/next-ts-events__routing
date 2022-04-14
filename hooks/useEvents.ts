@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { EventModel } from "../models";
 import { fetchEventsAPI } from "../api/fetchEvents";
+import { EventModel } from "../models";
 
 export const useEvents = () => {
   const [isLoading, setIsLoading] = useState(false);

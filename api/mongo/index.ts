@@ -1,0 +1,1 @@
+export { fetchNewsletterAPI } from "./fetchNewsletter";

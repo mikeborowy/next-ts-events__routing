@@ -7,3 +7,15 @@ export type EventModel = {
   image: string;
   isFeatured: boolean;
 };
+
+export type CommentModel = {
+  _id?: string;
+  email: string;
+  name: string;
+  text: string;
+  eventId?: string;
+};
+
+export type NewsletterModel = {
+  email: string;
+};
