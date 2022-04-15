@@ -1,18 +1,40 @@
 import { FormEvent, useRef } from "react";
 import { fetchNewsletterAPI } from "../../api/mongo/fetchNewsletter";
+import { useNotificationContext } from "../../contexts/notification.context";
 import classes from "./newsletter-registration.module.css";
 
 export function NewsletterRegistration() {
   const emailRef = useRef<HTMLInputElement | null>(null);
+  const { showNotification } = useNotificationContext();
 
   const registrationHandler = async (event: FormEvent) => {
     event.preventDefault();
 
+    showNotification({
+      status: "pending",
+      title: "Signing Up!",
+      message: "Registering for newsletter",
+    });
+
     if (emailRef.current?.value) {
-      fetchNewsletterAPI({
+      const response = await fetchNewsletterAPI({
         method: "POST",
         body: { email: emailRef.current?.value },
       });
+
+      if (response?.email) {
+        showNotification({
+          status: "success",
+          title: "Signed Up!",
+          message: "Registering for newsletter",
+        });
+      } else {
+        showNotification({
+          status: "error",
+          title: "Error!",
+          message: "Registering for newsletter",
+        });
+      }
     }
   };
 

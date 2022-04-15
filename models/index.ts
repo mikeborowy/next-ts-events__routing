@@ -19,3 +19,11 @@ export type CommentModel = {
 export type NewsletterModel = {
   email: string;
 };
+
+export type StatusType = "success" | "pending" | "error";
+
+export type NotificationModel = {
+  title: string;
+  status: StatusType;
+  message: string;
+};

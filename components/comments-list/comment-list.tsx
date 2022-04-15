@@ -9,7 +9,7 @@ export function CommentList(props: CommentListProps) {
   const { comments } = props;
   return (
     <ul className={classes.comments}>
-      {comments.map((comment) => {
+      {comments?.map((comment) => {
         return (
           <li key={comment._id}>
             <p>{comment.text}</p>
