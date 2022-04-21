@@ -1,11 +1,8 @@
 import { MongoClient } from "mongodb";
-import { CollectionTypes } from "../../../api/mongo/@types/CollectionsTypes";
-import { DBMessage } from "../../../api/mongo/@types/DBMessage";
-import {
-  connectDatabase,
-  getAllDocuments,
-  insertDocument,
-} from "../../../api/mongo/helpers";
+import { CollectionTypes } from "../../../api/mongo/@types/collectionsTypes";
+import { DBMessage } from "../../../api/mongo/@types/dbMessage";
+import { connectDatabase } from "../../../api/mongo/helpers";
+import { getAllDocuments, insertDocument } from "../../../api/mongo/queries";
 import { isValidComment, isValidEmail, isValidName } from "../../../helpers";
 import { CommentModel } from "../../../models";
 import { APIMessage } from "../@types";

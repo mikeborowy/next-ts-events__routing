@@ -1,5 +1,5 @@
 export const DATA_COLLECTIONS = {
-  comments: "comments",
-  newsletter: "newsletter",
-  events: "events",
+  COMMENTS: "comments",
+  NEWSLETTER: "newsletter",
+  EVENTS: "events",
 } as const;
