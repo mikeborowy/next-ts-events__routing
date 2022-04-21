@@ -1,5 +1,6 @@
-import { DBMessage } from "../../../api/mongo/@types/DBMessage";
-import { connectDatabase, insertDocument } from "../../../api/mongo/helpers";
+import { DBMessage } from "../../../api/mongo/@types/dbMessage";
+import { connectDatabase } from "../../../api/mongo/helpers";
+import { insertDocument } from "../../../api/mongo/queries";
 import { isValidEmail } from "../../../helpers/isValidEmail";
 import { NewsletterModel } from "../../../models";
 import { APIMessage } from "../@types";

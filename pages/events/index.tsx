@@ -15,7 +15,7 @@ type EventsPageProps = {
   events: EventModel[];
 };
 
-const EventsPage: NextPage<EventsPageProps> = (props) => {
+const EventsPage: NextPage<EventsPageProps> = (props: EventsPageProps) => {
   const router = useRouter();
   const { events } = props;
 
