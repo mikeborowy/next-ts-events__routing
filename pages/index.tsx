@@ -11,7 +11,7 @@ type HomePageProps = {
   events: EventModel[];
 };
 
-const HomePage: NextPage<HomePageProps> = ({ events }: HomePageProps) => {
+const HomePage: NextPage<HomePageProps> = ({ events }) => {
   return (
     <div>
       <Head>

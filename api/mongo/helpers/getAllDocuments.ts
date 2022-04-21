@@ -1,5 +1,5 @@
 import { Filter, MongoClient, Sort } from "mongodb";
-import { CollectionTypes } from "../@types/collectionsTypes";
+import { CollectionTypes } from "../@types/CollectionsTypes";
 
 type InsertDocumentType<T> = {
   client: MongoClient;

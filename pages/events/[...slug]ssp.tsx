@@ -20,9 +20,7 @@ type FilteredEventsPageProps = {
   hasError: boolean;
 };
 
-const FilteredEventsPage: NextPage<FilteredEventsPageProps> = (
-  props: FilteredEventsPageProps
-) => {
+const FilteredEventsPage: NextPage<FilteredEventsPageProps> = (props) => {
   const {
     events,
     date: { year, month },

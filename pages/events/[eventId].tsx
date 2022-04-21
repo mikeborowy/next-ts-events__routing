@@ -13,9 +13,7 @@ type EventDetailsPageProps = {
   event: EventModel;
 };
 
-const EventDetailsPage: NextPage<EventDetailsPageProps> = (
-  props: EventDetailsPageProps
-) => {
+const EventDetailsPage: NextPage<EventDetailsPageProps> = (props) => {
   const { event } = props;
 
   // if (!event) {
